@@ -8,7 +8,10 @@
     <div class="collapse navbar-collapse" [ngbCollapse]="isMenuMain">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link active" [routerLink]="'.'" (click)="isMenuMain = true">カラーパレット</a>
+                <a class="nav-link" [routerLink]="'/dashboard'" (click)="isMenuMain = true">ダッシュボード</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'/color'" (click)="isMenuMain = true">色作成ツール</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="'.'" (click)="isMenuMain = true">Examples</a>

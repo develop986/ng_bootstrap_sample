@@ -10,12 +10,14 @@ import { MenuComponent } from './menu/menu.component';
 import { ColorComponent } from './color/color.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    ColorComponent
+    ColorComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
