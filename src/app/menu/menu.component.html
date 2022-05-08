@@ -11,7 +11,8 @@
                 <a class="nav-link" [routerLink]="'/dashboard'" (click)="isMenuMain = true">ダッシュボード</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="'/color'" (click)="isMenuMain = true">色作成ツール</a>
+                <a class="nav-link" [routerLink]="'/color'" [queryParams]="{ hue: '180', sat: '0', val: '50' }"
+                    (click)="isMenuMain = true">色作成ツール</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="'.'" (click)="isMenuMain = true">Examples</a>

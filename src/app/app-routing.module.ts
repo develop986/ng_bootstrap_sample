@@ -6,7 +6,7 @@ import { ColorComponent } from './color/color.component';
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'color', component: ColorComponent }
+  { path: 'color', component: ColorComponent },
 ];
 
 @NgModule({

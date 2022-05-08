@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 // FormBuilder: FormControlやFormGroupなどを作成できる
 // FormGroup: 複数のフォームを束ねるクラス, FormControlをネストして使用できる
@@ -13,25 +14,25 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./color.component.scss']
 })
 export class ColorComponent implements OnInit {
-  color_hue: number = 180;
-  color_1_r: number = 255;
+  color_hue: number = 0;
+  color_1_r: number = 0;
   color_1_g: number = 0;
   color_1_b: number = 0;
-  color_sat: number = 100;
-  color_val: number = 100;
+  color_sat: number = 0;
+  color_val: number = 0;
   color_2_r: number = 0;
   color_2_g: number = 0;
   color_2_b: number = 0;
-  color_hue_hex: string = "#00FFFF";
-  color_1_r_hex: string = "#FF0000";
-  color_1_g_hex: string = "#000000";
-  color_1_b_hex: string = "#000000";
-  color_2_r_hex: string = "#FF0000";
-  color_2_g_hex: string = "#000000";
-  color_2_b_hex: string = "#000000";
-  color_sat_hex: string = "#FF0000";
-  color_val_hex: string = "#FFFF00";
-  color_result_hex: string = "#000000";
+  color_hue_hex: string = "";
+  color_1_r_hex: string = "";
+  color_1_g_hex: string = "";
+  color_1_b_hex: string = "";
+  color_2_r_hex: string = "";
+  color_2_g_hex: string = "";
+  color_2_b_hex: string = "";
+  color_sat_hex: string = "";
+  color_val_hex: string = "";
+  color_result_hex: string = "";
   markdown: string;
 
   checkoutForm = this.formBuilder.group({
@@ -40,11 +41,19 @@ export class ColorComponent implements OnInit {
     color_val: 0
   });
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute) {
     this.markdown = 'assets/color.component.md';
   }
 
   ngOnInit(): void {
+    this.activatedRoute.queryParamMap.subscribe((params: ParamMap) => {
+      this.color_hue = Number(params.get('hue'));
+      this.color_sat = Number(params.get('sat'));
+      this.color_val = Number(params.get('val'));
+    });
+    this.color_hue = this.color_hue ? this.color_hue : 180;
+    this.color_sat = this.color_sat ? this.color_sat : 0;
+    this.color_val = this.color_val ? this.color_val : 50;
     this.onChange1();
   }
 
