@@ -2,3 +2,76 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+/* 以下でテーマ作成 */
+/* https://themestr.app/theme */
+
+/*! `Custom` Bootstrap 5 theme */
+@import url(https://fonts.googleapis.com/css?family=Comfortaa:200,300,400,700);
+$headings-font-family:Comfortaa;
+
+$enable-grid-classes:false;
+$primary:#160bff;
+$secondary:#303030;
+$success:#015668;
+$danger:#FF304F;
+$info:#0F81C7;
+$warning:#0DE2EA;
+$light:#e8e8e8;
+$dark:#000000;
+$enable-shadows:true;
+$body-color:#cccccc;
+$font-size-base:1.1rem;
+$input-bg:#000000;
+$input-disabled-bg: #222;
+$nav-tabs-link-active-bg:transparent;
+$pagination-bg:transparent;
+$pagination-hover-bg:transparent;
+$pagination-active-bg:transparent;
+$pagination-disabled-bg:transparent;
+$modal-header-border-color:rgba(0,0,0,.2);
+
+/*! Import Bootstrap 5 variables */
+/* @import "bootstrap/functions"; */
+/* @import "bootstrap/variables"; */
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+$body-bg:$black;
+$nav-tabs-border-color:rgba($white, 0.3);
+$nav-tabs-link-hover-border-color:$nav-tabs-border-color;
+$nav-tabs-link-active-border-color:$nav-tabs-border-color;
+$navbar-dark-hover-color:$white;
+$navbar-light-hover-color:$gray-800;
+$navbar-light-active-color:$gray-800;
+$dropdown-bg:$gray-800;
+$dropdown-divider-bg:rgba($black,.15);
+$dropdown-link-color:$body-color;
+$dropdown-link-hover-color:$white;
+$dropdown-link-hover-bg:$body-bg;
+$pagination-color:$white;
+$pagination-border-color:rgba($black, 0.6);
+$pagination-hover-color:$white;
+$pagination-hover-border-color:rgba($black, 0.6);
+$pagination-active-border-color:rgba($black, 0.6);
+$pagination-disabled-border-color:rgba($black, 0.6);
+$card-border-color:rgba($black, 0.6);
+$card-cap-bg:lighten($gray-800, 10%);
+$card-bg:lighten($body-bg, 5%);
+$modal-content-bg:lighten($body-bg,5%);
+$progress-bg:darken($gray-900,5%);
+$progress-bar-color:$gray-600;
+$list-group-bg:lighten($body-bg,5%);
+$list-group-border-color:rgba($black,0.6);
+$list-group-hover-bg:lighten($body-bg,10%);
+$list-group-active-color:$white;
+$list-group-active-bg:$list-group-hover-bg;
+$list-group-active-border-color:$list-group-border-color;
+$list-group-disabled-color:$gray-800;
+$list-group-disabled-bg:$black;
+$list-group-action-color:$white;
+$breadcrumb-active-color:$gray-500;
+$input-border-color:$gray-400;
+@import "bootstrap";
+
+// Add SASS theme customizations here..
+.navbar-dark.bg-primary {background-color:#111111 !important;}

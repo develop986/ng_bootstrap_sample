@@ -25,3 +25,25 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+
+
+## 新規でプロジェクトを作成する場合
+
+```
+$ ng new ng_bootstrap_sample
+$ cd ng_bootstrap_sample
+
+$ ng add @ng-bootstrap/ng-bootstrap
+
+Service Worker
+$ ng add @angular/pwa
+```
+
+## ビルド
+
+```
+$ ng build
+$ http-server ./dist/ng_bootstrap_sample -p3000 -c-1 -o
+```
