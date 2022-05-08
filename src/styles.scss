@@ -20,7 +20,7 @@ $warning:#0DE2EA;
 $light:#e8e8e8;
 $dark:#000000;
 $enable-shadows:true;
-$body-color:#cccccc;
+$body-color:#ffffff;
 $font-size-base:1.1rem;
 $input-bg:#000000;
 $input-disabled-bg: #222;
@@ -31,11 +31,11 @@ $pagination-active-bg:transparent;
 $pagination-disabled-bg:transparent;
 $modal-header-border-color:rgba(0,0,0,.2);
 
+$input-color: #ffffff;
+
 /*! Import Bootstrap 5 variables */
-/* @import "bootstrap/functions"; */
-/* @import "bootstrap/variables"; */
-@import "~bootstrap/scss/_functions";
-@import "~bootstrap/scss/_variables";
+// @import "bootstrap/functions";
+// @import "bootstrap/variables";
 $body-bg:$black;
 $nav-tabs-border-color:rgba($white, 0.3);
 $nav-tabs-link-hover-border-color:$nav-tabs-border-color;
@@ -74,4 +74,11 @@ $input-border-color:$gray-400;
 @import "bootstrap";
 
 // Add SASS theme customizations here..
-.navbar-dark.bg-primary {background-color:#111111 !important;}
+// .navbar-dark.bg-primary {background-color:#111111 !important;}
+
+// input type の種類によらず、サイズを合わせる
+input {
+    height: 38px;
+    margin-bottom: 10px
+}
+

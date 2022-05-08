@@ -1,42 +1,39 @@
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand" [routerLink]="'.'" (click)="isMenuMain = !isMenuMain">
-            Ng-Bootstrap サンプル集
-        </a>
-        <button class="navbar-toggler" type="button" (click)="isMenuMain = !isMenuMain">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" [ngbCollapse]="isMenuMain">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" [routerLink]="'.'" (click)="isMenuMain = true">カラーパレット</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="'.'" (click)="isMenuMain = true">Examples</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="'.'" (click)="isMenuMain = true">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" [routerLink]="'.'"
-                        (click)="isMenuSub1 = !isMenuSub1">ドロップダウン</a>
-                    <ul class="dropdown-menu" [ngbCollapse]="isMenuSub1">
-                        <li><a class="dropdown-item" [routerLink]="'.'" (click)="isMenuSub1 = true">リンク1</a></li>
-                        <li><a class="dropdown-item" [routerLink]="'.'" (click)="isMenuSub1 = true">リンク2</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" [routerLink]="'.'" (click)="isMenuSub1 = true">リンク3</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="検索...">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
+<nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" [routerLink]="'.'" (click)="isMenuMain = !isMenuMain">
+        Ng-Bootstrap サンプル集
+    </a>
+    <button class="navbar-toggler" type="button" (click)="isMenuMain = !isMenuMain">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" [ngbCollapse]="isMenuMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active" [routerLink]="'.'" (click)="isMenuMain = true">カラーパレット</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'.'" (click)="isMenuMain = true">Examples</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'.'" (click)="isMenuMain = true">About</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" [routerLink]="'.'" (click)="isMenuSub1 = !isMenuSub1">ドロップダウン</a>
+                <ul class="dropdown-menu" [ngbCollapse]="isMenuSub1">
+                    <li><a class="dropdown-item" [routerLink]="'.'" (click)="isMenuSub1 = true">リンク1</a></li>
+                    <li><a class="dropdown-item" [routerLink]="'.'" (click)="isMenuSub1 = true">リンク2</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" [routerLink]="'.'" (click)="isMenuSub1 = true">リンク3</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+            </li>
+        </ul>
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="検索...">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
     </div>
 </nav>
