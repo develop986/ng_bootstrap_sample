@@ -33,7 +33,6 @@ export class ColorComponent implements OnInit {
   color_sat_hex: string = "";
   color_val_hex: string = "";
   color_result_hex: string = "";
-  markdown: string;
 
   checkoutForm = this.formBuilder.group({
     color_hue: 0,
@@ -42,7 +41,6 @@ export class ColorComponent implements OnInit {
   });
 
   constructor(private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute) {
-    this.markdown = 'assets/color.component.md';
   }
 
   ngOnInit(): void {
@@ -142,5 +140,24 @@ export class ColorComponent implements OnInit {
 
   private static toHex(v: number) {
     return (('00' + v.toString(16).toUpperCase()).substr(-2));
+  }
+
+  saveHistory() {
+    let data = localStorage.getItem("color_history");
+    let obj = [];
+    if(data){
+      obj = JSON.parse(data);
+    }
+    obj.push(this.color_result_hex);
+    localStorage.setItem("color_history", JSON.stringify(obj))
+  }
+
+  listHistory(): string[] {
+    let data = localStorage.getItem("color_history");
+    let obj = [];
+    if(data){
+      obj = JSON.parse(data);
+    }
+    return obj;
   }
 }

@@ -147,12 +147,24 @@
                             [style.background-color]="color_result_hex">
                     </div>
                     <!--
+                        保存ボタン
+                    -->
+                    <h2 class="line_space_2">４．保存</h2>
+                    <div class="col-3"></div>
+                    <button type="button" class="col-6 btn btn-primary" (click)="saveHistory()">保存</button>
+                    <div class="col-3"></div>
+                    <!--
                         履歴欄
                     -->
-                    <h2 class="line_space_2">４．履歴</h2>
+                    <h2 class="line_space_2">５．履歴</h2>
                     <!--
                         結果確認用ラベル
                     -->
+                    <div class="col-1"></div>
+                    <ul class="col-10 list-group">
+                        <li class="list-group-item" *ngFor="let value of listHistory(); let i = index">{{value}}</li>
+                    </ul>
+                    <div class="col-1"></div>
                 </div>
             </div>
             <div class="col-12 col-xl-4">
