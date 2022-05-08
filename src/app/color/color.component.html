@@ -139,35 +139,39 @@
                     <div class="col-12 line_space">
                         <label class="form-label">Result</label>
                     </div>
-                    <div class="col-12 col-lg-2">
+                    <div class="col-4 col-lg-2">
                         <input type="text" disabled class="form-control" [value]="color_result_hex">
                     </div>
-                    <div class="col-12 col-lg-10">
+                    <div class="col-8 col-lg-8">
                         <input type="range" min="0" max="2" disabled class="form-control" value="1"
                             [style.background-color]="color_result_hex">
                     </div>
-                    <!--
-                        保存ボタン
-                    -->
-                    <h2 class="line_space_2">４．保存</h2>
-                    <div class="col-3"></div>
-                    <button type="button" class="col-6 btn btn-primary" (click)="saveHistory()">保存</button>
-                    <div class="col-3"></div>
-                    <!--
-                        履歴欄
-                    -->
-                    <h2 class="line_space_2">５．履歴</h2>
-                    <!--
-                        結果確認用ラベル
-                    -->
-                    <div class="col-1"></div>
-                    <ul class="col-10 list-group">
-                        <li class="list-group-item" *ngFor="let value of listHistory(); let i = index">{{value}}</li>
-                    </ul>
-                    <div class="col-1"></div>
+                    <div class="d-grid gap-2 col-12 col-lg-2 mx-auto">
+                        <button type="button" class="btn btn-primary" (click)="saveHistory()">保存</button>
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-xl-4">
+                <div class="row">
+                    <!--
+                        履歴欄
+                    -->
+                    <h2 class="line_space_2">４．履歴</h2>
+                    <!--
+                        結果確認用ラベル
+                    -->
+                    <ng-container *ngFor="let value of listHistory(); let i = index">
+                        <div class="col-4 col-lg-2">
+                            <input type="text" disabled class="form-control" [value]="value">
+                        </div>
+                        <div class="col-5 col-lg-8">
+                            <input type="text" disabled class="form-control" [style.background-color]="value">
+                        </div>
+                        <div class="d-grid gap-2 col-3 col-lg-2 mx-auto">
+                            <button type="button" class="btn btn-danger" (click)="saveHistory()">削除</button>
+                        </div>
+                    </ng-container>
+                </div>
             </div>
         </div>
     </form>

@@ -76,9 +76,13 @@ $input-border-color:$gray-400;
 // Add SASS theme customizations here..
 // .navbar-dark.bg-primary {background-color:#111111 !important;}
 
-// input type の種類によらず、サイズを合わせる
+// input type button の種類によらず、サイズを合わせる
 input {
     height: 38px;
-    margin-bottom: 10px
+    margin-bottom: 10px;
+}
+
+button {
+    margin-bottom: 10px;
 }
 
