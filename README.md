@@ -27,9 +27,23 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
+## 動作確認する場合
+
+> Service Worker は、`ng build`で起動する必要があります。  
+> またangular/cliとnpmパッケージは、バージョンをキレイに合わせる必要があります。
+
+```
+$ npm install -g @angular/cli@13.3.5
+$ cd ng_bootstrap_sample
+$ npm install
+$ ng serve
+
+http://localhost:4200/
+にアクセス
+```
 
 
-## 新規でプロジェクトを作成する場合
+## 新規でプロジェクトを作成する場合（最新バージョンで構築する場合）
 
 ```
 $ ng new ng_bootstrap_sample
