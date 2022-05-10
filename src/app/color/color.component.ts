@@ -182,7 +182,7 @@ export class ColorModel {
       sat: this.sat,
       val: this.val,
       hex: this.hex,
-      date: this.date?.getTime()
+      date: this.date
     }
   }
 }
