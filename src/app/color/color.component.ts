@@ -51,8 +51,8 @@ export class ColorComponent implements OnInit {
       this.color_sat = Number(params.get('sat'));
       this.color_val = Number(params.get('val'));
     });
-    this.color_hue = this.color_hue ? this.color_hue : 180;
-    this.color_sat = this.color_sat ? this.color_sat : 0;
+    this.color_hue = this.color_hue ? this.color_hue : 120;
+    this.color_sat = this.color_sat ? this.color_sat : 100;
     this.color_val = this.color_val ? this.color_val : 50;
     this.onChange1();
   }
@@ -162,7 +162,7 @@ export class ColorComponent implements OnInit {
     };
     let history: ColorModel[] = [];
     obj.forEach(element => {
-      history.push(new ColorModel(element["hue"], element["sat"], element["val"], element["hex"]));
+      history.push(new ColorModel(element["hue"], element["sat"], element["val"], element["hex"], element["date"]));
     });
     return history;
   }
@@ -170,10 +170,10 @@ export class ColorComponent implements OnInit {
 
 export class ColorModel {
 
-  date: Date;
-
-  constructor(public hue: number, public sat: number, public val: number, public hex: string) {
-    this.date = new Date;
+  constructor(public hue: number, public sat: number, public val: number, public hex: string, public date?: Date) {
+    if(!date){
+      this.date = new Date();
+    }
   }
 
   toJson(): {} {
@@ -182,7 +182,7 @@ export class ColorModel {
       sat: this.sat,
       val: this.val,
       hex: this.hex,
-      date: this.date.getMilliseconds()
+      date: this.date?.getTime()
     }
   }
 }

@@ -143,8 +143,7 @@
                         <input type="text" disabled class="form-control" [value]="color_result_hex">
                     </div>
                     <div class="col-8 col-lg-8">
-                        <input type="range" min="0" max="2" disabled class="form-control" value="1"
-                            [style.background-color]="color_result_hex">
+                        <input type="text" disabled class="form-control" [style.background-color]="color_result_hex">
                     </div>
                     <div class="d-grid gap-2 col-12 col-lg-2 mx-auto">
                         <button type="button" class="btn btn-primary" (click)="saveHistory()">保存</button>
@@ -165,7 +164,8 @@
                             <input type="text" disabled class="form-control" [value]="value.hex">
                         </div>
                         <div class="col-5 col-lg-6">
-                            <input type="text" disabled class="form-control" [style.background-color]="value.hex">
+                            <input type="text" disabled class="form-control"
+                                [value]="value.date | date: 'yyyy/MM/dd HH:mm:ss.SSS'" [style.background-color]="value.hex">
                         </div>
                         <div class="d-grid gap-2 col-3 col-lg-3 mx-auto">
                             <button type="button" class="btn btn-danger" (click)="saveHistory()">削除</button>
