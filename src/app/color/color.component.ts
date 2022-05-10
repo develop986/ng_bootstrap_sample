@@ -14,12 +14,15 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./color.component.scss']
 })
 export class ColorComponent implements OnInit {
+  // JSON対象
   color_hue: number = 0;
+  color_sat: number = 0;
+  color_val: number = 0;
+  color_result_hex: string = "";
+  // JSON対象外
   color_1_r: number = 0;
   color_1_g: number = 0;
   color_1_b: number = 0;
-  color_sat: number = 0;
-  color_val: number = 0;
   color_2_r: number = 0;
   color_2_g: number = 0;
   color_2_b: number = 0;
@@ -32,7 +35,6 @@ export class ColorComponent implements OnInit {
   color_2_b_hex: string = "";
   color_sat_hex: string = "";
   color_val_hex: string = "";
-  color_result_hex: string = "";
 
   checkoutForm = this.formBuilder.group({
     color_hue: 0,
@@ -145,19 +147,42 @@ export class ColorComponent implements OnInit {
   saveHistory() {
     let data = localStorage.getItem("color_history");
     let obj = [];
-    if(data){
+    if (data) {
       obj = JSON.parse(data);
     }
-    obj.push(this.color_result_hex);
+    obj.push(new ColorModel(this.color_hue, this.color_sat, this.color_val, this.color_result_hex).toJson());
     localStorage.setItem("color_history", JSON.stringify(obj))
   }
 
-  listHistory(): string[] {
+  listHistory(): ColorModel[] {
     let data = localStorage.getItem("color_history");
-    let obj = [];
-    if(data){
+    let obj: [] = [];
+    if (data) {
       obj = JSON.parse(data);
+    };
+    let history: ColorModel[] = [];
+    obj.forEach(element => {
+      history.push(new ColorModel(element["hue"], element["sat"], element["val"], element["hex"]));
+    });
+    return history;
+  }
+}
+
+export class ColorModel {
+
+  date: Date;
+
+  constructor(public hue: number, public sat: number, public val: number, public hex: string) {
+    this.date = new Date;
+  }
+
+  toJson(): {} {
+    return {
+      hue: this.hue,
+      sat: this.sat,
+      val: this.val,
+      hex: this.hex,
+      date: this.date.getMilliseconds()
     }
-    return obj;
   }
 }

@@ -161,13 +161,13 @@
                         結果確認用ラベル
                     -->
                     <ng-container *ngFor="let value of listHistory(); let i = index">
-                        <div class="col-4 col-lg-2">
-                            <input type="text" disabled class="form-control" [value]="value">
+                        <div class="col-4 col-lg-3">
+                            <input type="text" disabled class="form-control" [value]="value.hex">
                         </div>
-                        <div class="col-5 col-lg-8">
-                            <input type="text" disabled class="form-control" [style.background-color]="value">
+                        <div class="col-5 col-lg-6">
+                            <input type="text" disabled class="form-control" [style.background-color]="value.hex">
                         </div>
-                        <div class="d-grid gap-2 col-3 col-lg-2 mx-auto">
+                        <div class="d-grid gap-2 col-3 col-lg-3 mx-auto">
                             <button type="button" class="btn btn-danger" (click)="saveHistory()">削除</button>
                         </div>
                     </ng-container>
