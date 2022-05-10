@@ -162,7 +162,12 @@ export class ColorComponent implements OnInit {
     };
     let history: ColorModel[] = [];
     obj.forEach(element => {
-      history.push(new ColorModel(element["hue"], element["sat"], element["val"], element["hex"], element["date"]));
+      history.push(new ColorModel(
+        element["hue"],
+        element["sat"],
+        element["val"],
+        element["hex"],
+        element["date"]));
     });
     return history;
   }
@@ -170,8 +175,13 @@ export class ColorComponent implements OnInit {
 
 export class ColorModel {
 
-  constructor(public hue: number, public sat: number, public val: number, public hex: string, public date?: Date) {
-    if(!date){
+  constructor(
+    public hue: number,
+    public sat: number,
+    public val: number,
+    public hex: string,
+    public date?: Date) {
+    if (!date) {
       this.date = new Date();
     }
   }
