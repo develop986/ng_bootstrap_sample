@@ -150,7 +150,7 @@ export class ColorComponent implements OnInit {
     if (data) {
       obj = JSON.parse(data);
     }
-    obj.push(new ColorModel(this.color_hue, this.color_sat, this.color_val, this.color_result_hex).toJson());
+    obj.push(ColorModel.toJson(this.color_hue, this.color_sat, this.color_val, this.color_result_hex));
     localStorage.setItem("color_history", JSON.stringify(obj))
   }
 
@@ -180,19 +180,24 @@ export class ColorModel {
     public sat: number,
     public val: number,
     public hex: string,
-    public date?: Date) {
-    if (!date) {
-      this.date = new Date();
-    }
+    public date: Date) {
   }
 
-  toJson(): {} {
+  static toJson(
+    hue: number,
+    sat: number,
+    val: number,
+    hex: string,
+    date?: Date): {} {
+    if (!date) {
+      date = new Date();
+    }
     return {
-      hue: this.hue,
-      sat: this.sat,
-      val: this.val,
-      hex: this.hex,
-      date: this.date
+      hue: hue,
+      sat: sat,
+      val: val,
+      hex: hex,
+      date: date
     }
   }
 }
