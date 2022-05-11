@@ -59,89 +59,34 @@ export class ColorComponent implements OnInit {
 
   onChange1() {
     // SとVは、どちらも100にする
-    let max = 255;
-    let min = 0;
-    if (this.color_hue <= 60) {
-      this.color_1_r = max;
-      this.color_1_g = Math.round((this.color_hue / 60) * (max - min)) + min;
-      this.color_1_b = min;
-    } else if (this.color_hue <= 120) {
-      this.color_1_r = Math.round((120 - this.color_hue) / 60 * (max - min)) + min;
-      this.color_1_g = max;
-      this.color_1_b = min;
-    } else if (this.color_hue <= 180) {
-      this.color_1_r = min;
-      this.color_1_g = max;
-      this.color_1_b = Math.round((this.color_hue - 120) / 60 * (max - min)) + min;
-    } else if (this.color_hue <= 240) {
-      this.color_1_r = min;
-      this.color_1_g = Math.round((240 - this.color_hue) / 60 * (max - min)) + min;
-      this.color_1_b = max;
-    } else if (this.color_hue <= 300) {
-      this.color_1_r = Math.round((this.color_hue - 240) / 60 * (max - min)) + min;
-      this.color_1_g = min;
-      this.color_1_b = max;
-    } else {
-      this.color_1_r = max;
-      this.color_1_g = min;
-      this.color_1_b = Math.round((360 - this.color_hue) / 60 * (max - min)) + min;
-    }
+    let rgb = ColorModel.hsvToRgb(this.color_hue, 100, 100);
+    this.color_1_r = rgb.r;
+    this.color_1_g = rgb.g;
+    this.color_1_b = rgb.b;
     this.onChange2();
   }
 
   onChange2() {
-    // SとVから、最大値を求める
-    let max = Math.round(this.color_val * 255 / 100);
-    let min = max - Math.round((this.color_sat * max / 100));
-    if (this.color_hue <= 60) {
-      this.color_2_r = max;
-      this.color_2_g = Math.round((this.color_hue / 60) * (max - min)) + min;
-      this.color_2_b = min;
-    } else if (this.color_hue <= 120) {
-      this.color_2_r = Math.round((120 - this.color_hue) / 60 * (max - min)) + min;
-      this.color_2_g = max;
-      this.color_2_b = min;
-    } else if (this.color_hue <= 180) {
-      this.color_2_r = min;
-      this.color_2_g = max;
-      this.color_2_b = Math.round((this.color_hue - 120) / 60 * (max - min)) + min;
-    } else if (this.color_hue <= 240) {
-      this.color_2_r = min;
-      this.color_2_g = Math.round((240 - this.color_hue) / 60 * (max - min)) + min;
-      this.color_2_b = max;
-    } else if (this.color_hue <= 300) {
-      this.color_2_r = Math.round((this.color_hue - 240) / 60 * (max - min)) + min;
-      this.color_2_g = min;
-      this.color_2_b = max;
-    } else {
-      this.color_2_r = max;
-      this.color_2_g = min;
-      this.color_2_b = Math.round((360 - this.color_hue) / 60 * (max - min)) + min;
-    }
+    let rgb = ColorModel.hsvToRgb(this.color_hue, this.color_sat, this.color_val);
+    this.color_2_r = rgb.r;
+    this.color_2_g = rgb.g;
+    this.color_2_b = rgb.b;
     this.rgbUpdate();
   }
 
   private rgbUpdate() {
-    this.color_1_r_hex = "#" + ColorComponent.toHex(this.color_1_r) + "0000";
-    this.color_1_g_hex = "#00" + ColorComponent.toHex(this.color_1_g) + "00";
-    this.color_1_b_hex = "#0000" + ColorComponent.toHex(this.color_1_b);
-    this.color_hue_hex = "#" + ColorComponent.toHex(this.color_1_r)
-      + ColorComponent.toHex(this.color_1_g)
-      + ColorComponent.toHex(this.color_1_b);
-    this.color_2_r_hex = "#" + ColorComponent.toHex(this.color_2_r) + "0000";
-    this.color_2_g_hex = "#00" + ColorComponent.toHex(this.color_2_g) + "00";
-    this.color_2_b_hex = "#0000" + ColorComponent.toHex(this.color_2_b);
-    this.color_result_hex = "#" + ColorComponent.toHex(this.color_2_r)
-      + ColorComponent.toHex(this.color_2_g)
-      + ColorComponent.toHex(this.color_2_b);
-    this.color_sat_hex = "#FF" + ColorComponent.toHex(255 - Math.round(this.color_sat * 255 / 100))
-      + ColorComponent.toHex(255 - Math.round(this.color_sat * 255 / 100));
-    this.color_val_hex = "#" + ColorComponent.toHex(Math.round(this.color_val * 255 / 100))
-      + ColorComponent.toHex(Math.round(this.color_val * 255 / 100)) + "00";
-  }
-
-  private static toHex(v: number) {
-    return (('00' + v.toString(16).toUpperCase()).substr(-2));
+    this.color_1_r_hex = ColorModel.rgbToHex(this.color_1_r, 0, 0);
+    this.color_1_g_hex = ColorModel.rgbToHex(0, this.color_1_g, 0);
+    this.color_1_b_hex = ColorModel.rgbToHex(0, 0, this.color_1_b);
+    this.color_hue_hex = ColorModel.rgbToHex(this.color_1_r, this.color_1_g, this.color_1_b);
+    this.color_2_r_hex = ColorModel.rgbToHex(this.color_2_r, 0, 0);
+    this.color_2_g_hex = ColorModel.rgbToHex(0, this.color_2_g, 0);
+    this.color_2_b_hex = ColorModel.rgbToHex(0, 0, this.color_2_b);
+    this.color_result_hex = ColorModel.rgbToHex(this.color_2_r, this.color_2_g, this.color_2_b);
+    let sat_255 = ColorModel._100To255(this.color_sat);
+    this.color_sat_hex = ColorModel.rgbToHex(255, 255 - sat_255, 255 - sat_255);
+    let val_255 = ColorModel._100To255(this.color_val);
+    this.color_val_hex = ColorModel.rgbToHex(val_255, val_255, 0);
   }
 
   saveHistory() {
@@ -150,7 +95,7 @@ export class ColorComponent implements OnInit {
     if (data) {
       obj = JSON.parse(data);
     }
-    obj.push(ColorModel.toJson(this.color_hue, this.color_sat, this.color_val, this.color_result_hex));
+    obj.push(ColorModel.createJson(this.color_hue, this.color_sat, this.color_val, this.color_result_hex));
     localStorage.setItem("color_history", JSON.stringify(obj))
   }
 
@@ -183,12 +128,18 @@ export class ColorModel {
     public date: Date) {
   }
 
-  static toJson(
+  static createJson(
     hue: number,
     sat: number,
     val: number,
     hex: string,
-    date?: Date): {} {
+    date?: Date): {
+      hue: number,
+      sat: number,
+      val: number,
+      hex: string,
+      date: Date
+    } {
     if (!date) {
       date = new Date();
     }
@@ -199,5 +150,50 @@ export class ColorModel {
       hex: hex,
       date: date
     }
+  }
+
+  static hsvToRgb(hue: number, sat: number, val: number): { r: number, g: number, b: number } {
+    // SとVから、最大値を求める
+    let max = Math.round(val * 255 / 100);
+    let min = max - Math.round((sat * max / 100));
+    let r, g, b;
+    if (hue <= 60) {
+      r = max;
+      g = Math.round((hue / 60) * (max - min)) + min;
+      b = min;
+    } else if (hue <= 120) {
+      r = Math.round((120 - hue) / 60 * (max - min)) + min;
+      g = max;
+      b = min;
+    } else if (hue <= 180) {
+      r = min;
+      g = max;
+      b = Math.round((hue - 120) / 60 * (max - min)) + min;
+    } else if (hue <= 240) {
+      r = min;
+      g = Math.round((240 - hue) / 60 * (max - min)) + min;
+      b = max;
+    } else if (hue <= 300) {
+      r = Math.round((hue - 240) / 60 * (max - min)) + min;
+      g = min;
+      b = max;
+    } else {
+      r = max;
+      g = min;
+      b = Math.round((360 - hue) / 60 * (max - min)) + min;
+    }
+    return { r: r, g: g, b: b };
+  }
+
+  static rgbToHex(r: number, g: number, b: number): string {
+    return "#" + ColorModel.toHex(r) + ColorModel.toHex(g) + ColorModel.toHex(b);
+  }
+
+  static _100To255(v: number) {
+    return Math.round(v * 255 / 100);
+  }
+
+  private static toHex(v: number) {
+    return (('00' + v.toString(16).toUpperCase()).substr(-2));
   }
 }
