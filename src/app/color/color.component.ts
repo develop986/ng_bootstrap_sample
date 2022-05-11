@@ -1,3 +1,4 @@
+import { NumberSymbol } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -89,9 +90,15 @@ export class ColorComponent implements OnInit {
     this.color_val_hex = ColorModel.rgbToHex(val_255, val_255, 0);
   }
 
-  saveHistory() {
+  addHistory() {
     let data = localStorage.getItem("color_history");
-    let obj = [];
+    let obj: {
+      hue: number,
+      sat: number,
+      val: number,
+      hex: string,
+      date: Date
+    }[] = [];
     if (data) {
       obj = JSON.parse(data);
     }
@@ -99,9 +106,31 @@ export class ColorComponent implements OnInit {
     localStorage.setItem("color_history", JSON.stringify(obj))
   }
 
+  delHistory(date: Date) {
+    let data = localStorage.getItem("color_history");
+    let obj: {
+      hue: number,
+      sat: number,
+      val: number,
+      hex: string,
+      date: Date
+    }[] = [];
+    if (data) {
+      obj = JSON.parse(data);
+    }
+    let newObj = obj.filter(n => n.date !== date);
+    localStorage.setItem("color_history", JSON.stringify(newObj))
+  }
+
   listHistory(): ColorModel[] {
     let data = localStorage.getItem("color_history");
-    let obj: [] = [];
+    let obj: {
+      hue: number,
+      sat: number,
+      val: number,
+      hex: string,
+      date: Date
+    }[] = [];
     if (data) {
       obj = JSON.parse(data);
     };

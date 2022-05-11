@@ -146,7 +146,7 @@
                         <input type="text" disabled class="form-control" [style.background-color]="color_result_hex">
                     </div>
                     <div class="d-grid gap-2 col-12 col-lg-2 mx-auto">
-                        <button type="button" class="btn btn-primary" (click)="saveHistory()">保存</button>
+                        <button type="button" class="btn btn-primary" (click)="addHistory()">保存</button>
                     </div>
                 </div>
             </div>
@@ -165,10 +165,11 @@
                         </div>
                         <div class="col-5 col-lg-6">
                             <input type="text" disabled class="form-control"
-                                [value]="value.date | date: 'yyyy/MM/dd HH:mm:ss.SSS'" [style.background-color]="value.hex">
+                                [value]="value.date | date: 'yyyy/MM/dd HH:mm:ss.SSS'"
+                                [style.background-color]="value.hex">
                         </div>
                         <div class="d-grid gap-2 col-3 col-lg-3 mx-auto">
-                            <button type="button" class="btn btn-danger" (click)="saveHistory()">削除</button>
+                            <button type="button" class="btn btn-danger" (click)="delHistory(value.date)">削除</button>
                         </div>
                     </ng-container>
                 </div>
