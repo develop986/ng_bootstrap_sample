@@ -59,9 +59,7 @@ export class ColorComponent implements OnInit {
   }
 
   onChange() {
-    //this.router.navigateByUrl('/color?hue=` + `this.color_hue` + `&sat=` + `this.color_sat` + `&val=` + this.color_val');
-    //this.router.navigate(['hue', this.color_hue, 'sat', this.color_sat, 'val', this.color_val], { relativeTo: this.route });
-    //this.router.navigate([[''], { queryParams: { hue: this.color_hue, sat: this.color_sat, val: this.color_val } }], { relativeTo: this.route });
+    this.router.navigate(['/color'], { queryParams: { hue: this.color_hue, sat: this.color_sat, val: this.color_val } });
     this.changeColor();
   }
 
