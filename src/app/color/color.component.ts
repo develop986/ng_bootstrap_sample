@@ -1,7 +1,7 @@
 import { NumberSymbol } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 // FormBuilder: FormControlやFormGroupなどを作成できる
 // FormGroup: 複数のフォームを束ねるクラス, FormControlをネストして使用できる
@@ -43,7 +43,7 @@ export class ColorComponent implements OnInit {
     color_val: 0
   });
 
-  constructor(private formBuilder: FormBuilder, private activatedRoute: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -55,23 +55,24 @@ export class ColorComponent implements OnInit {
     this.color_hue = this.color_hue ? this.color_hue : 120;
     this.color_sat = this.color_sat ? this.color_sat : 100;
     this.color_val = this.color_val ? this.color_val : 50;
-    this.onChange1();
+    this.changeColor();
   }
 
-  onChange1() {
+  onChange() {
+    //this.router.navigateByUrl('/color?hue=` + `this.color_hue` + `&sat=` + `this.color_sat` + `&val=` + this.color_val');
+    this.changeColor();
+  }
+
+  private changeColor() {
     // SとVは、どちらも100にする
-    let rgb = ColorModel.hsvToRgb(this.color_hue, 100, 100);
-    this.color_1_r = rgb.r;
-    this.color_1_g = rgb.g;
-    this.color_1_b = rgb.b;
-    this.onChange2();
-  }
-
-  onChange2() {
-    let rgb = ColorModel.hsvToRgb(this.color_hue, this.color_sat, this.color_val);
-    this.color_2_r = rgb.r;
-    this.color_2_g = rgb.g;
-    this.color_2_b = rgb.b;
+    let rgb1 = ColorModel.hsvToRgb(this.color_hue, 100, 100);
+    this.color_1_r = rgb1.r;
+    this.color_1_g = rgb1.g;
+    this.color_1_b = rgb1.b;
+    let rgb2 = ColorModel.hsvToRgb(this.color_hue, this.color_sat, this.color_val);
+    this.color_2_r = rgb2.r;
+    this.color_2_g = rgb2.g;
+    this.color_2_b = rgb2.b;
     this.rgbUpdate();
   }
 
