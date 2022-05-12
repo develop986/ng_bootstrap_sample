@@ -43,11 +43,11 @@ export class ColorComponent implements OnInit {
     color_val: 0
   });
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.queryParamMap.subscribe((params: ParamMap) => {
+    this.route.queryParamMap.subscribe((params: ParamMap) => {
       this.color_hue = Number(params.get('hue'));
       this.color_sat = Number(params.get('sat'));
       this.color_val = Number(params.get('val'));
@@ -60,6 +60,8 @@ export class ColorComponent implements OnInit {
 
   onChange() {
     //this.router.navigateByUrl('/color?hue=` + `this.color_hue` + `&sat=` + `this.color_sat` + `&val=` + this.color_val');
+    //this.router.navigate(['hue', this.color_hue, 'sat', this.color_sat, 'val', this.color_val], { relativeTo: this.route });
+    //this.router.navigate([[''], { queryParams: { hue: this.color_hue, sat: this.color_sat, val: this.color_val } }], { relativeTo: this.route });
     this.changeColor();
   }
 
