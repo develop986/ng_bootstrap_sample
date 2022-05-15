@@ -47,9 +47,17 @@ $ http-server ./dist/ng_bootstrap_sample -p3000 -c-1
 
 - http://localhost:3000/
 
-## サーバー構築
+## 参考文献
 
-### CentOS Stream release 8
+- Angular
+  - [Angular Docs](https://angular.jp/docs)
+  - [Angular2によるモダンWeb開発 基礎編](https://project.nikkeibp.co.jp/bnt/atcl/17/P96530/)
+  - [AngularによるモダンWeb開発 基礎編 第2版](https://project.nikkeibp.co.jp/bnt/atcl/19/P54530/)
+  - [Angular powered Bootstrap](https://ng-bootstrap.github.io/#/getting-started)
+- Bootstrap
+  - [Bootstrap v5.0](https://getbootstrap.jp/docs/5.0/getting-started/introduction/)
+
+## サーバー構築（CentOS Stream release 8）
 
 > 動作環境
 > - [WebARENA Indigo](https://web.arena.ne.jp/indigo/)
@@ -62,50 +70,18 @@ $ http-server ./dist/ng_bootstrap_sample -p3000 -c-1
 
 ```
 # npm install -g @angular/cli@13.3.5
-# npm install -g http-server
 # git clone https://github.com/develop986/ng_bootstrap_sample
+# git pull
+# mkdir /var/www/ng_bootstrap_sample
+# cp -a ng_bootstrap_sample/dist/ng_bootstrap_sample/* /var/www/ng_bootstrap_sample/
+```
+
+```
+ビルドする場合は、更に以下を実施
+
 # cd ng_bootstrap_sample
 # npm install
 $ ng build
-```
-
-> 仮想化サーバーなどで動作が遅い場合は、  
-> `ng build`を諦め、後述の`ng serve`を使用する。  
-> （サーバー起動には時間がかかる）
-
-#### Service 作成
-
-```
-# vi /etc/systemd/system/ng_bootstrap_sample.service
-
-以下のファイルを作成する
-
-[Unit]
-Description=ng_bootstrap_sample
-After=syslog.target network.target
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/http-server ./dist/ng_bootstrap_sample -p3000 -c-1
-WorkingDirectory=/root/ng_bootstrap_sample
-KillMode=process
-Restart=always
-User=root
-Group=root
-
-[Install]
-WantedBy=multi-user.target
-
-ng serve を使用する場合は、以下の設定にする
-
-ExecStart=/usr/bin/ng serve
-```
-
-```
-# systemctl enable ng_bootstrap_sample.service
-# systemctl start ng_bootstrap_sample.service
-# systemctl stop ng_bootstrap_sample.service
-# systemctl restart ng_bootstrap_sample.service
 ```
 
 ### VirtualHost 設定
@@ -117,59 +93,34 @@ ExecStart=/usr/bin/ng serve
 
 <VirtualHost *:80>
     ServerAdmin room@mysv986.com
-    DocumentRoot /var/www/html/
-    ServerName ng_bootstrap_sample.mysv986.com
-    ServerAlias ng_bootstrap_sample.mysv986.com
+    DocumentRoot /var/www/ng_bootstrap_sample/
+    ServerName ngbootstrapsample.mysv986.com
+    ServerAlias ngbootstrapsample.mysv986.com
 RewriteEngine on
-RewriteCond %{SERVER_NAME} =ng_bootstrap_sample.mysv986.com
+RewriteCond %{SERVER_NAME} =ngbootstrapsample.mysv986.com
 RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 ```
 
 ```
 # systemctl restart httpd
-# certbot --apache -d workmng.mysv986.com
+# certbot --apache -d ngbootstrapsample.mysv986.com
 # systemctl restart httpd
 ```
 
 ```
-# vi /etc/httpd/conf/httpd-le-ssl.conf
+# cat /etc/httpd/conf/httpd-le-ssl.conf
 
-以下のファイルを作成する
+以下のファイルが作成される。
 
 <VirtualHost *:443>
     ServerAdmin room@mysv986.com
-    DocumentRoot /var/www/html/
-    ServerName ng_bootstrap_sample.mysv986.com
-    ServerAlias ng_bootstrap_sample.mysv986.com
+    DocumentRoot /root/ng_bootstrap_sample/dist/ng_bootstrap_sample
+    ServerName ngbootstrapsample.mysv986.com
+    ServerAlias ngbootstrapsample.mysv986.com
 
-SSLCertificateFile /etc/letsencrypt/live/ng_bootstrap_sample.mysv986.com/fullchain.pem
-SSLCertificateKeyFile /etc/letsencrypt/live/ng_bootstrap_sample.mysv986.com/privkey.pem
+SSLCertificateFile /etc/letsencrypt/live/ngbootstrapsample.mysv986.com/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/ngbootstrapsample.mysv986.com/privkey.pem
 Include /etc/letsencrypt/options-ssl-apache.conf
-
-    SSLEngine on
-    SSLProxyVerify none
-    SSLProxyCheckPeerCN off
-    SSLProxyCheckPeerName off
-    SSLProxyCheckPeerExpire off
-    SSLProxyEngine on
-    ProxyRequests off
-    ProxyPass / http://ng_bootstrap_sample.mysv986.com:3000/
-    ProxyPassReverse / http://ng_bootstrap_sample.mysv986.com:3000/
-
 </VirtualHost>
 ```
-
-```
-systemctl restart httpd
-```
-
-## 参考文献
-
-- Angular
-  - [Angular Docs](https://angular.jp/docs)
-  - [Angular2によるモダンWeb開発 基礎編](https://project.nikkeibp.co.jp/bnt/atcl/17/P96530/)
-  - [AngularによるモダンWeb開発 基礎編 第2版](https://project.nikkeibp.co.jp/bnt/atcl/19/P54530/)
-  - [Angular powered Bootstrap](https://ng-bootstrap.github.io/#/getting-started)
-- Bootstrap
-  - [Bootstrap v5.0](https://getbootstrap.jp/docs/5.0/getting-started/introduction/)
