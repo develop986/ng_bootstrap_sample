@@ -66,6 +66,8 @@ $ http-server ./dist/ng_bootstrap_sample -p3000 -c-1
 >     - `02_Apache.md`
 >     - `80_NodeJs.md`
 
+> https://github.com/develop986/centos_server
+
 ### 動作環境構築
 
 ```
