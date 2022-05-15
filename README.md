@@ -115,7 +115,7 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 
 <VirtualHost *:443>
     ServerAdmin room@mysv986.com
-    DocumentRoot /root/ng_bootstrap_sample/dist/ng_bootstrap_sample
+    DocumentRoot /var/www/ng_bootstrap_sample/
     ServerName ngbootstrapsample.mysv986.com
     ServerAlias ngbootstrapsample.mysv986.com
 
