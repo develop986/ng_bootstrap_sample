@@ -1,7 +1,7 @@
 # Angular、Ng-Bootstrap サンプルページ
 
-> Angular と Ng Bootstrap で作ったサンプルページです。
-> - Service Workerを使った、スマホ対応Webアプリ
+> AngularとNg-Bootstrap で作ったスマホ対応Webアプリです
+> - Service Worker スマホ対応Webアプリ
 > - Bootstrap レスポンシブデザイン
 > - Bootstrap ナビゲーション
 > - Angular ルーティング
