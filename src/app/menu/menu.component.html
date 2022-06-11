@@ -1,6 +1,6 @@
 <nav class="container-fluid navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" [routerLink]="'.'" (click)="isMenuMain = !isMenuMain">
-        Ng-Bootstrap サンプル集
+        Ng-Bootstrap
     </a>
     <button class="navbar-toggler" type="button" (click)="isMenuMain = !isMenuMain">
         <span class="navbar-toggler-icon"></span>
@@ -9,6 +9,9 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="'/dashboard'" (click)="isMenuMain = true">ダッシュボード</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="'/users'" (click)="isMenuMain = true">ユーザー一覧</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="'/color'" [queryParams]="{ hue: '120', sat: '100', val: '50' }"
