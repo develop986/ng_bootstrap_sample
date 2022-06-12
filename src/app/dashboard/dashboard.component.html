@@ -1,7 +1,11 @@
-<h2>Top Users</h2>
-<div class="users-menu">
-  <a *ngFor="let user of users" routerLink="/detail/{{user.id}}">
-    {{user.name}}
-  </a>
+<div class="container-fluid">
+  <h2>Top Users</h2>
+  <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+    <ng-container *ngFor="let user of users">
+      <input type="checkbox" class="btn-check" id="btncheck{{user.id}}" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btncheck{{user.id}}"
+        routerLink="/detail/{{user.id}}">{{user.name}}</label>
+    </ng-container>
+  </div>
 </div>
 <app-user-search></app-user-search>
