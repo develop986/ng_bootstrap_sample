@@ -8,6 +8,7 @@
 > - Local Storage
 > - サンプル集
 >   - RGB色作成機能（色相を決め、彩度と明度を調整してRGBを作成する）
+>   - ツアー・オブ・ヒーローズ
 
 ## プロジェクト作成方法
 
@@ -54,6 +55,7 @@ $ http-server ./dist/ng_bootstrap_sample -p3000 -c-1
   - [Angular2によるモダンWeb開発 基礎編](https://project.nikkeibp.co.jp/bnt/atcl/17/P96530/)
   - [AngularによるモダンWeb開発 基礎編 第2版](https://project.nikkeibp.co.jp/bnt/atcl/19/P54530/)
   - [Angular powered Bootstrap](https://ng-bootstrap.github.io/#/getting-started)
+  - [Angular ツアー・オブ・ヒーローズ アプリケーションとチュートリアル](https://angular.jp/tutorial/toh-pt6)
 - Bootstrap
   - [Bootstrap v5.0](https://getbootstrap.jp/docs/5.0/getting-started/introduction/)
 
