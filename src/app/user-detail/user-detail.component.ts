@@ -10,7 +10,6 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
-
   user: User | undefined;
 
   constructor(
@@ -23,15 +22,21 @@ export class UserDetailComponent implements OnInit {
     this.getUser();
   }
 
-
   getUser(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.userService.getUser(id)
       .subscribe(user => this.user = user);
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    if (this.user) {
+      this.userService.updateUser(this.user)
+        .subscribe(() => this.goBack());
+    }
   }
 
 }
