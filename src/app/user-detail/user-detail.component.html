@@ -4,7 +4,7 @@
     <div><span>id: </span>{{user.id}}</div>
     <div>
       <label for="user-name">User name: </label>
-      <input id="user-name" [(ngModel)]="user.name" placeholder="name">
+      <input id="user-name" [(ngModel)]="user.name" placeholder="Hero name">
     </div>
-  
+    <button type="button" (click)="goBack()">go back</button>
   </div>
