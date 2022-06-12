@@ -1,5 +1,6 @@
-<h2>My Users</h2>
-<ul class="users">
+<h2>My Useres</h2>
+
+<ul class="useres">
   <li *ngFor="let user of users">
     <button [class.selected]="user === selectedUser" type="button" (click)="onSelect(user)">
       <span class="badge">{{user.id}}</span>
@@ -8,11 +9,4 @@
   </li>
 </ul>
 
-<div *ngIf="selectedUser">
-  <h2>{{selectedUser.name | uppercase}} Details</h2>
-  <div>id: {{selectedUser.id}}</div>
-  <div>
-    <label for="user-name">Hero name: </label>
-    <input id="user-name" [(ngModel)]="selectedUser.name" placeholder="name">
-  </div>
-</div>
+<app-user-detail [user]="selectedUser"></app-user-detail>
