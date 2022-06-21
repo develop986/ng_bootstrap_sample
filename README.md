@@ -74,18 +74,44 @@ $ http-server ./dist/ng_bootstrap_sample -p3000 -c-1
 
 ```
 # npm install -g @angular/cli@13.3.5
+# rm -rf ng_bootstrap_sample/
 # git clone https://github.com/develop986/ng_bootstrap_sample
-# git pull
-# mkdir /var/www/ng_bootstrap_sample
-# cp -a ng_bootstrap_sample/dist/ng_bootstrap_sample/* /var/www/ng_bootstrap_sample/
 ```
 
 ```
 ビルドする場合は、更に以下を実施
-
+trapsample
 # cd ng_bootstrap_sample
 # npm install
 $ ng build
+```
+
+## サービス作成
+
+```
+  580  vi /etc/systemd/system/ngbootstrapsample.service
+  581  cat /etc/systemd/system/ngbootstrapsample.service
+  582  systemctl enable ngbootstrapsample.service
+  583  systemctl start ngbootstrapsample.service
+  584  systemctl stop ngbootstrapsample.service
+  586  systemctl restart ngbootstrapsample.service
+
+[root@centos ~]# cat /etc/systemd/system/ngbootstrapsample.service
+[Unit]
+Description=ngbootstrapsample server
+After=syslog.target network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/http-server /root/ng_bootstrap_sample/dist/ng_bootstrap_sample -p3001 -c-1
+WorkingDirectory=/root/ng_bootstrap_sample
+KillMode=process
+Restart=always
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 ### VirtualHost 設定
@@ -97,7 +123,7 @@ $ ng build
 
 <VirtualHost *:80>
     ServerAdmin room@mysv986.com
-    DocumentRoot /var/www/ng_bootstrap_sample/
+    DocumentRoot /var/www/html/
     ServerName ngbootstrapsample.mysv986.com
     ServerAlias ngbootstrapsample.mysv986.com
 RewriteEngine on
@@ -113,20 +139,35 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 ```
 
 ```
-# cat /etc/httpd/conf/httpd-le-ssl.conf
+# vi /etc/httpd/conf/httpd-le-ssl.conf
 
-以下のファイルが作成される。
+Include以下に、SSLProxy設定を追記する。
 
 <VirtualHost *:443>
     ServerAdmin room@mysv986.com
-    DocumentRoot /var/www/ng_bootstrap_sample/
+    DocumentRoot /var/www/html/
     ServerName ngbootstrapsample.mysv986.com
     ServerAlias ngbootstrapsample.mysv986.com
 
 SSLCertificateFile /etc/letsencrypt/live/ngbootstrapsample.mysv986.com/fullchain.pem
 SSLCertificateKeyFile /etc/letsencrypt/live/ngbootstrapsample.mysv986.com/privkey.pem
 Include /etc/letsencrypt/options-ssl-apache.conf
+
+    SSLEngine on
+    SSLProxyVerify none
+    SSLProxyCheckPeerCN off
+    SSLProxyCheckPeerName off
+    SSLProxyCheckPeerExpire off
+    SSLProxyEngine on
+    ProxyRequests off
+    ProxyPass / http://ngbootstrapsample.mysv986.com:3001/
+    ProxyPassReverse / http://ngbootstrapsample.mysv986.com:3001/
+    
 </VirtualHost>
+```
+
+```
+# systemctl restart httpd
 ```
 
 https://ngbootstrapsample.mysv986.com
