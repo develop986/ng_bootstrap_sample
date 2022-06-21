@@ -2,20 +2,31 @@
 
 <div>
   <label for="new-user">User name: </label>
-  <input id="new-user" #userName />
+  <input id="new-user" class="form-control" #userName />
 
   <!-- (click) 入力値をadd()に渡したあと、入力をクリアする -->
-  <button type="button" class="add-button" (click)="add(userName.value); userName.value=''">
+  <button type="button" class="btn btn-primary" (click)="add(userName.value); userName.value=''">
     Add user
   </button>
 </div>
 
-<ul class="users">
-  <li *ngFor="let user of users">
-    <a routerLink="/detail/{{user.id}}">
-      <span class="badge">{{user.id}}</span> {{user.name}}
-    </a>
-    <button type="button" class="delete" title="delete user"
-      (click)="delete(user)">x</button>
-  </li>
-</ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ユーザー</th>
+      <th scope="col">削除</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td scope="row">
+        <a routerLink="/detail/{{user.id}}">
+          <span class="badge">{{user.id}}</span> {{user.name}}
+        </a>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger" (click)="delete(user)">delete user</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
