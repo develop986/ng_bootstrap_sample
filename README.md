@@ -6,9 +6,10 @@
 > - Bootstrap ナビゲーション
 > - Angular ルーティング
 > - Local Storage
+> - [Angular Google Maps component](https://github.com/angular/components/tree/main/src/google-maps#readme)
 > - サンプル集
 >   - RGB色作成機能（色相を決め、彩度と明度を調整してRGBを作成する）
->   - ツアー・オブ・ヒーローズ
+>   - [ツアー・オブ・ヒーローズ](https://angular.jp/tutorial)
 
 ## プロジェクト作成方法
 
@@ -26,7 +27,8 @@ Service Worker
 $ ng add @angular/pwa
 
 追加パッケージ
-$ npm install angular-in-memory-web-api 
+$ npm install angular-in-memory-web-api
+$ npm install @angular/google-maps
 ```
 
 ## 実行方法
