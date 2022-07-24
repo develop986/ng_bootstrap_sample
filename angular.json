@@ -8,9 +8,6 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "",
@@ -111,5 +108,7 @@
       }
     }
   },
-  "defaultProject": "ng_bootstrap_sample"
+  "cli": {
+    "analytics": "03c7e601-879a-4b19-8ef2-7cc9db189d27"
+  }
 }

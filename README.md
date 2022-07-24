@@ -13,7 +13,10 @@
 ## プロジェクト作成方法
 
 ```
-$ npm install -g @angular/cli
+最新パッケージで作り直す場合は、ng_bootstrap_sampleを一度消す
+
+$ sudo npm install -g @angular/cli
+$ sudo npm install -g npm@8.15.0
 $ ng new ng_bootstrap_sample
 $ cd ng_bootstrap_sample
 
@@ -21,6 +24,9 @@ $ ng add @ng-bootstrap/ng-bootstrap
 
 Service Worker
 $ ng add @angular/pwa
+
+追加パッケージ
+$ npm install angular-in-memory-web-api 
 ```
 
 ## 実行方法
