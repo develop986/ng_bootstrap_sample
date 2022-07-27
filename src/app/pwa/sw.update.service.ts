@@ -2,7 +2,6 @@ import { Injectable, ApplicationRef } from "@angular/core";
 import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
 import { concat, interval } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { DebugUtil } from '../util/debug.util';
 
 function promptUser(event: UpdateAvailableEvent): boolean {
     return true;
@@ -12,15 +11,15 @@ function promptUser(event: UpdateAvailableEvent): boolean {
 export class SwUpdateService {
 
     constructor(appRef: ApplicationRef, updates: SwUpdate) {
-        DebugUtil.log('SwUpdate isEnabled:', updates.isEnabled);
+        console.log('SwUpdate isEnabled:', updates.isEnabled);
         if (updates.isEnabled) {
             updates.available.subscribe(event => {
-                DebugUtil.log('current version is', event.current);
-                DebugUtil.log('available version is', event.available);
+                console.log('current version is', event.current);
+                console.log('available version is', event.available);
             });
             updates.activated.subscribe(event => {
-                DebugUtil.log('old version was', event.previous);
-                DebugUtil.log('new version is', event.current);
+                console.log('old version was', event.previous);
+                console.log('new version is', event.current);
             });
             
             // Allow the app to stabilize first, before starting polling for updates with `interval()`.
@@ -29,12 +28,12 @@ export class SwUpdateService {
             const everySixHoursOnceAppIsStable$ = concat(appIsStable$, everySixHours$);
 
             everySixHoursOnceAppIsStable$.subscribe(() => {
-                DebugUtil.log('checkForUpdate');
+                console.log('checkForUpdate');
                 updates.checkForUpdate()
             });
 
             updates.available.subscribe(event => {
-                DebugUtil.log("promptUser:", promptUser(event));
+                console.log("promptUser:", promptUser(event));
                 if (promptUser(event)) {
                     updates.activateUpdate().then(() => document.location.reload());
                 }
