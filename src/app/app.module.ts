@@ -20,6 +20,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { MessagesComponent } from './messages/messages.component';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { GoogleMapsComponent } from './google-maps/google-maps.component';
+import { SwUpdateService } from "./pwa/sw.update.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { GoogleMapsComponent } from './google-maps/google-maps.component';
     UserDetailComponent,
     MessagesComponent,
     UserSearchComponent,
-    GoogleMapsComponent
+    GoogleMapsComponent,
+    SwUpdateService
   ],
   imports: [
     BrowserModule,
