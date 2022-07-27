@@ -32,8 +32,7 @@ import { SwUpdateService } from "./pwa/sw.update.service";
     UserDetailComponent,
     MessagesComponent,
     UserSearchComponent,
-    GoogleMapsComponent,
-    SwUpdateService
+    GoogleMapsComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +54,7 @@ import { SwUpdateService } from "./pwa/sw.update.service";
       registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
-  providers: [AppComponent],
+  providers: [AppComponent, SwUpdateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
