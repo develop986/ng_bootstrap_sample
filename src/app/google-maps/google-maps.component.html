@@ -1,5 +1,4 @@
-<div class="container-fluid">
-    <div *ngIf="apiLoaded | async">
-        <google-map></google-map>
-    </div>
-</div>
+<google-map height="500px" width="500px" [center]="center" [zoom]="zoom" [options]="options">
+    <map-marker *ngIf="currentPosition" [position]="currentPosition" [options]="currentPositionMarkerOption">
+    </map-marker>
+</google-map>

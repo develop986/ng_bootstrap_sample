@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-google-maps',
@@ -9,16 +6,44 @@ import { catchError, map } from 'rxjs/operators';
   styleUrls: ['./google-maps.component.scss']
 })
 export class GoogleMapsComponent implements OnInit {
-  apiLoaded: Observable<boolean>;
+  //apiLoaded: Observable<boolean>;
 
-  constructor(httpClient: HttpClient) {
-    this.apiLoaded = httpClient.jsonp('https://maps.googleapis.com/maps/api/js?key=AIzaSyBHlNKLL2obpkxieZWEg3-1-QBE9LWhrK8', 'callback')
-      .pipe(
-        map(() => true),
-        catchError(() => of(false)),
-      );
+  zoom = 16;
+  center: google.maps.LatLngLiteral = {
+    lat: 35.697695,
+    lng: 139.707354
+  };
+  options: google.maps.MapOptions = {
+    disableDefaultUI: true
+  };
+
+  // 現在位置マーカーの座標
+  currentPosition: google.maps.LatLngLiteral = {
+    lat: 35.697695,
+    lng: 139.707354
+  };
+  // 現在位置マーカーのオプション
+  currentPositionMarkerOption: google.maps.MarkerOptions = {
+    icon: {
+      url: "assets/point.png",
+      scaledSize: new google.maps.Size(32, 32)
+    }
+  };
+
+
+  constructor() {
   }
 
-  ngOnInit(): void {
+
+  ngOnInit() {
+    // 現在位置を取得する。
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.currentPosition = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+      });
+    }
   }
 }
