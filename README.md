@@ -29,6 +29,9 @@ $ ng add @angular/pwa
 追加パッケージ
 $ npm install angular-in-memory-web-api
 $ npm install @angular/google-maps
+
+コンポーネント追加例
+$ ng generate component top
 ```
 
 ## 実行方法
